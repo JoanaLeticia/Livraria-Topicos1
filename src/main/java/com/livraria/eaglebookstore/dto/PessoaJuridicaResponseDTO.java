@@ -11,7 +11,7 @@ import com.livraria.eaglebookstore.model.Telefone;
 public record PessoaJuridicaResponseDTO (
     Long id,
     String nome,
-    String cpnj,
+    String cnpj,
     String email,
     List<Telefone> telefones,
     List<Endereco> enderecos,
@@ -21,7 +21,7 @@ public record PessoaJuridicaResponseDTO (
     public PessoaJuridicaResponseDTO(PessoaJuridica pj) {
         this(pj.getId(),
         pj.getNome(),
-        pj.getCpnj(),
+        pj.getCnpj(),
         pj.getEmail(),
         pj.getTelefones(),
         pj.getEnderecos(),
