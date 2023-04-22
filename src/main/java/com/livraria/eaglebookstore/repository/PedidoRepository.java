@@ -32,4 +32,8 @@ public class PedidoRepository implements PanacheRepositoryBase<Pedido, Long> {
         return this.find("cliente", cliente).list();
     }
 
+    public Pedido buscarPedidoPorId(Long id) {
+        return null;
+    }
+
 }

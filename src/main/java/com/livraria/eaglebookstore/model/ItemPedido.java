@@ -57,4 +57,18 @@ public class ItemPedido {
         this.produto = produto;
     }
 
+    public Object getLivro() {
+        return null;
+    }
+
+    public void setLivro(Object livro) {
+    }
+
+    public Object getPedido() {
+        return null;
+    }
+
+    public void setPedido(Object pedido2) {
+    }
+
 }

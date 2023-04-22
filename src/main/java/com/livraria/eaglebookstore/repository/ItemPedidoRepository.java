@@ -9,4 +9,8 @@ import io.quarkus.hibernate.orm.panache.PanacheRepository;
 @ApplicationScoped
 public class ItemPedidoRepository implements PanacheRepository<ItemPedido> {
 
+    public ItemPedido save(ItemPedido itemPedido) {
+        return null;
+    }
+
 }

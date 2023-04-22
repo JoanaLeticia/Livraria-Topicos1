@@ -83,4 +83,8 @@ public class Cliente {
         this.listaDesejos = listaDesejos;
     }
 
+    public int getPreco() {
+        return 0;
+    }
+
 }

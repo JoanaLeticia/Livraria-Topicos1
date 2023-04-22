@@ -33,4 +33,8 @@ public class LivroRepository implements PanacheRepository<Livro> {
         return findById(id);
     }
 
+    public Livro save(Livro livroExistente) {
+        return null;
+    }
+
 }
