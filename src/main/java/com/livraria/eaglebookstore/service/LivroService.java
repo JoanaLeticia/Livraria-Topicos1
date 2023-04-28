@@ -2,6 +2,9 @@ package com.livraria.eaglebookstore.service;
 
 import com.livraria.eaglebookstore.model.Livro;
 import com.livraria.eaglebookstore.repository.LivroRepository;
+
+import java.util.List;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -43,6 +46,10 @@ public class LivroService {
 
     public Livro save(@Valid Livro livro) {
         return null;
+    }
+
+    public List<Livro> listarLivros() {
+        return livroRepository.listAll();
     }
 
 }
