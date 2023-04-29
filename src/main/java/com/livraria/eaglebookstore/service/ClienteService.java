@@ -11,9 +11,9 @@ public interface ClienteService {
 
     List<Cliente> listarClientes();
 
-    Cliente buscarClientePorId(Long id);
+    ClienteResponseDTO buscarClientePorId(Long id);
 
-    Cliente cadastrarCliente(Cliente cliente);
+    ClienteResponseDTO cadastrarCliente(ClienteDTO dto);
 
     ClienteResponseDTO atualizarCliente(Long id, ClienteDTO cliente);
 

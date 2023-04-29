@@ -30,7 +30,7 @@ public class LivroResource {
 
     @GET
     @Path("/{id}")
-    public Livro buscarLivroPorId(@PathParam("id") Long id) {
+    public LivroResponseDTO buscarLivroPorId(@PathParam("id") Long id) {
         return livroService.buscarLivroPorId(id);
     }
 

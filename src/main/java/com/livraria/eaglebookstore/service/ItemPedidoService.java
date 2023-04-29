@@ -12,7 +12,7 @@ public interface ItemPedidoService {
 
     List<ItemPedidoResponseDTO> listarItensPedido();
 
-    ItemPedido buscarItemPedidoPorId(Long id);
+    ItemPedidoResponseDTO buscarItemPedidoPorId(Long id);
 
     ItemPedidoResponseDTO cadastrarItemPedido(ItemPedidoDTO dto);
 

@@ -4,28 +4,12 @@ import javax.validation.constraints.NotBlank;
 
 import io.smallrye.common.constraint.NotNull;
 
-public class MunicipioDTO {
-    
+public record MunicipioDTO(
     @NotBlank
-    private String nome;
+    String nome,
 
     @NotNull
-    private Long estadoId;
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Long getEstadoId() {
-        return estadoId;
-    }
-
-    public void setEstadoId(Long estadoId) {
-        this.estadoId = estadoId;
-    }
+    Long estadoId
+) {
 
 }

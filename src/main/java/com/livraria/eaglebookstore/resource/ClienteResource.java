@@ -2,13 +2,13 @@ package com.livraria.eaglebookstore.resource;
 
 import com.livraria.eaglebookstore.application.Result;
 import com.livraria.eaglebookstore.dto.ClienteDTO;
+import com.livraria.eaglebookstore.dto.ClienteResponseDTO;
 import com.livraria.eaglebookstore.model.Cliente;
 import com.livraria.eaglebookstore.service.ClienteService;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
-import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -31,16 +31,20 @@ public class ClienteResource {
 
     @GET
     @Path("/{id}")
-    public Cliente buscarClientePorId(@PathParam("id") Long id) {
+    public ClienteResponseDTO buscarClientePorId(@PathParam("id") Long id) {
         return clienteService.buscarClientePorId(id);
     }
 
     @POST
-    @Transactional
-    public Cliente cadastrarCliente(@Valid Cliente cliente) {
-        return clienteService.cadastrarCliente(cliente);
+    public Response cadastrarCliente(ClienteDTO dto) {
+        try{
+            ClienteResponseDTO cliente = clienteService.cadastrarCliente(dto);
+            return Response.status(Status.CREATED).entity(cliente).build();
+        } catch(ConstraintViolationException e){
+            Result result = new Result(e.getConstraintViolations());
+            return Response.status(Status.NOT_FOUND).entity(result).build();
+        }
     }
-
     @PUT
     @Path("/{id}")
     public Response atualizarCliente(@PathParam("id") Long id, ClienteDTO dto) {

@@ -13,9 +13,9 @@ public interface PedidoService {
 
     PedidoResponseDTO cadastrarPedido(PedidoDTO dto);
 
-    Pedido atualizarPedido(Long id, PedidoDTO dto);
+    PedidoResponseDTO atualizarPedido(Long id, PedidoDTO dto);
 
-    Pedido buscarPedidoPorId(Long id);
+    PedidoResponseDTO buscarPedidoPorId(Long id);
 
     void calcularQuantidadeEValorTotal(Pedido pedido);
 

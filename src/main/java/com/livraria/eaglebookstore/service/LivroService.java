@@ -12,9 +12,9 @@ public interface LivroService {
 
     LivroResponseDTO cadastrarLivro(LivroDTO dto);
 
-    Livro buscarLivroPorId(Long id);
+    LivroResponseDTO buscarLivroPorId(Long id);
 
-    Livro atualizarLivro(Long id, LivroDTO dto);
+    LivroResponseDTO atualizarLivro(Long id, LivroDTO dto);
 
     void excluirLivro(Long id);
 

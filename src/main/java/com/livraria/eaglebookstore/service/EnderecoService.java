@@ -3,8 +3,6 @@ package com.livraria.eaglebookstore.service;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.validation.Valid;
-
 import com.livraria.eaglebookstore.dto.EnderecoDTO;
 import com.livraria.eaglebookstore.dto.EnderecoResponseDTO;
 
@@ -15,7 +13,7 @@ public interface EnderecoService {
 
     EnderecoResponseDTO buscarEnderecoPorId(Long id);
 
-    EnderecoResponseDTO cadastrarEndereco(@Valid EnderecoDTO dto);
+    EnderecoResponseDTO cadastrarEndereco(EnderecoDTO dto);
 
     void atualizarEndereco(Long id, EnderecoDTO dto);
 

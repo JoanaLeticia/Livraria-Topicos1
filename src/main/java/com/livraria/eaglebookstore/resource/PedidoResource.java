@@ -18,7 +18,6 @@ import javax.ws.rs.core.Response.Status;
 import com.livraria.eaglebookstore.application.Result;
 import com.livraria.eaglebookstore.dto.PedidoDTO;
 import com.livraria.eaglebookstore.dto.PedidoResponseDTO;
-import com.livraria.eaglebookstore.model.Pedido;
 import com.livraria.eaglebookstore.service.PedidoService;
 import com.oracle.svm.core.annotate.Inject;
 
@@ -37,7 +36,7 @@ public class PedidoResource {
 
     @GET
     @Path("/{id}")
-    public Pedido buscarPedidoPorId(@PathParam("id") Long id) {
+    public PedidoResponseDTO buscarPedidoPorId(@PathParam("id") Long id) {
         return pedidoService.buscarPedidoPorId(id);
     }
 

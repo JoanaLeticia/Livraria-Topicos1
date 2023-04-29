@@ -19,7 +19,6 @@ import javax.ws.rs.core.Response.Status;
 import com.livraria.eaglebookstore.application.Result;
 import com.livraria.eaglebookstore.dto.ItemPedidoDTO;
 import com.livraria.eaglebookstore.dto.ItemPedidoResponseDTO;
-import com.livraria.eaglebookstore.model.ItemPedido;
 import com.livraria.eaglebookstore.service.ItemPedidoService;
 
 @Path("/itenspedido")
@@ -37,7 +36,7 @@ public class ItemPedidoResource {
 
     @GET
     @Path("/{id}")
-    public ItemPedido buscarItemPedidoPorId(@PathParam("id") Long id) {
+    public ItemPedidoResponseDTO buscarItemPedidoPorId(@PathParam("id") Long id) {
         return itemPedidoService.buscarItemPedidoPorId(id);
     }
 

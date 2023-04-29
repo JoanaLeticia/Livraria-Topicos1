@@ -1,14 +1,18 @@
 package com.livraria.eaglebookstore.resource;
 
+import com.livraria.eaglebookstore.application.Result;
+import com.livraria.eaglebookstore.dto.ProdutoDTO;
+import com.livraria.eaglebookstore.dto.ProdutoResponseDTO;
 import com.livraria.eaglebookstore.model.Produto;
 import com.livraria.eaglebookstore.service.ProdutoService;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
-import javax.validation.Valid;
+import javax.validation.ConstraintViolationException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
+
 import java.util.List;
 
 @Path("/produtos")
@@ -19,6 +23,10 @@ public class ProdutoResource {
     @Inject
     ProdutoService produtoService;
 
+    public ProdutoResource(ProdutoService produtoService) {
+        this.produtoService = produtoService;
+    }
+
     @GET
     public List<Produto> listarProdutos() {
         return produtoService.listarProdutos();
@@ -26,44 +34,38 @@ public class ProdutoResource {
 
     @GET
     @Path("/{id}")
-    public Response buscarProdutoPorId(@PathParam("id") Long id) {
-        Produto produto = produtoService.buscarProdutoPorId(id);
-        if (produto != null) {
-            return Response.ok(produto).build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
+    public ProdutoResponseDTO buscarProdutoPorId(@PathParam("id") Long id) {
+        return produtoService.buscarProdutoPorId(id);
     }
 
     @POST
-    @Transactional
-    public Response cadastrarProduto(@Valid Produto produto) {
-        Produto novoProduto = produtoService.cadastrarProduto(produto);
-        return Response.status(Response.Status.CREATED).entity(novoProduto).build();
+    public Response cadastrarProduto(ProdutoDTO dto) {
+        try{
+            ProdutoResponseDTO produto = produtoService.cadastrarProduto(dto);
+            return Response.status(Status.CREATED).entity(produto).build();
+        } catch(ConstraintViolationException e){
+            Result result = new Result(e.getConstraintViolations());
+            return Response.status(Status.NOT_FOUND).entity(result).build();
+        }
     }
-
+    
     @PUT
     @Path("/{id}")
-    @Transactional
-    public Response atualizarProduto(@PathParam("id") Long id, @Valid Produto produtoAtualizado) {
-        Produto produto = produtoService.atualizarProduto(id, produtoAtualizado);
-        if (produto != null) {
-            return Response.ok(produto).build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND).build();
+    public Response atualizarProduto(@PathParam("id") Long id, ProdutoDTO dto) {
+        try {
+            produtoService.atualizarProduto(id, dto);
+            return Response.status(Status.NO_CONTENT).build();
+        } catch(ConstraintViolationException e) {
+            Result result = new Result(e.getConstraintViolations());
+            return Response.status(Status.NOT_FOUND).entity(result).build();
         }
     }
 
     @DELETE
     @Path("/{id}")
-    @Transactional
     public Response excluirProduto(@PathParam("id") Long id) {
-        boolean sucesso = produtoService.excluirProduto(id);
-        if (sucesso) {
-            return Response.noContent().build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
+        produtoService.excluirProduto(id);
+        return Response.status(Status.NO_CONTENT).build();
     }
 
 }
