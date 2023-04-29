@@ -3,7 +3,6 @@ package com.livraria.eaglebookstore.resource;
 import com.livraria.eaglebookstore.application.Result;
 import com.livraria.eaglebookstore.dto.ClienteDTO;
 import com.livraria.eaglebookstore.dto.ClienteResponseDTO;
-import com.livraria.eaglebookstore.model.Cliente;
 import com.livraria.eaglebookstore.service.ClienteService;
 
 import javax.inject.Inject;
@@ -25,7 +24,7 @@ public class ClienteResource {
     ClienteService clienteService;
 
     @GET
-    public List<Cliente> listarClientes() {
+    public List<ClienteResponseDTO> listarClientes() {
         return clienteService.listarClientes();
     }
 

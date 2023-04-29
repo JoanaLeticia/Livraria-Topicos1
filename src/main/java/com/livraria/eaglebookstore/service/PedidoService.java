@@ -2,13 +2,9 @@ package com.livraria.eaglebookstore.service;
 
 import java.util.List;
 
-import javax.enterprise.context.ApplicationScoped;
-
 import com.livraria.eaglebookstore.dto.PedidoDTO;
 import com.livraria.eaglebookstore.dto.PedidoResponseDTO;
-import com.livraria.eaglebookstore.model.Pedido;
 
-@ApplicationScoped
 public interface PedidoService {
 
     PedidoResponseDTO cadastrarPedido(PedidoDTO dto);
@@ -16,8 +12,6 @@ public interface PedidoService {
     PedidoResponseDTO atualizarPedido(Long id, PedidoDTO dto);
 
     PedidoResponseDTO buscarPedidoPorId(Long id);
-
-    void calcularQuantidadeEValorTotal(Pedido pedido);
 
     void excluirPedido(Long id);
 

@@ -12,7 +12,6 @@ import java.util.List;
 import com.livraria.eaglebookstore.application.Result;
 import com.livraria.eaglebookstore.dto.LivroDTO;
 import com.livraria.eaglebookstore.dto.LivroResponseDTO;
-import com.livraria.eaglebookstore.model.Livro;
 import com.livraria.eaglebookstore.service.LivroService;
 
 @Path("/livros")
@@ -24,7 +23,7 @@ public class LivroResource {
     LivroService livroService;
 
     @GET
-    public List<Livro> listarLivros() {
+    public List<LivroResponseDTO> listarLivros() {
         return livroService.listarLivros();
     }
 

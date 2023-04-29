@@ -2,14 +2,11 @@ package com.livraria.eaglebookstore.service;
 
 import com.livraria.eaglebookstore.dto.ProdutoDTO;
 import com.livraria.eaglebookstore.dto.ProdutoResponseDTO;
-import com.livraria.eaglebookstore.model.Produto;
-import javax.enterprise.context.ApplicationScoped;
 import java.util.List;
 
-@ApplicationScoped
 public interface ProdutoService {
 
-    List<Produto> listarProdutos();
+    List<ProdutoResponseDTO> listarProdutos();
 
     ProdutoResponseDTO buscarProdutoPorId(Long id);
 
@@ -17,5 +14,5 @@ public interface ProdutoService {
 
     ProdutoResponseDTO atualizarProduto(Long id, ProdutoDTO dto);
 
-    boolean excluirProduto(Long id);
+    void excluirProduto(Long id);
 }

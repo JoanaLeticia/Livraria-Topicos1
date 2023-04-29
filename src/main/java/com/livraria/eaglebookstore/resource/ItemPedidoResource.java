@@ -21,7 +21,7 @@ import com.livraria.eaglebookstore.dto.ItemPedidoDTO;
 import com.livraria.eaglebookstore.dto.ItemPedidoResponseDTO;
 import com.livraria.eaglebookstore.service.ItemPedidoService;
 
-@Path("/itenspedido")
+@Path("/itenspedidos")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ItemPedidoResource {

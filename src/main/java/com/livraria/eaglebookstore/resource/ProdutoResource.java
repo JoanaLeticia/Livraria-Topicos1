@@ -3,7 +3,6 @@ package com.livraria.eaglebookstore.resource;
 import com.livraria.eaglebookstore.application.Result;
 import com.livraria.eaglebookstore.dto.ProdutoDTO;
 import com.livraria.eaglebookstore.dto.ProdutoResponseDTO;
-import com.livraria.eaglebookstore.model.Produto;
 import com.livraria.eaglebookstore.service.ProdutoService;
 
 import javax.inject.Inject;
@@ -28,7 +27,7 @@ public class ProdutoResource {
     }
 
     @GET
-    public List<Produto> listarProdutos() {
+    public List<ProdutoResponseDTO> listarProdutos() {
         return produtoService.listarProdutos();
     }
 
