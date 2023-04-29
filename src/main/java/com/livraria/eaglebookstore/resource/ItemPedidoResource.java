@@ -1,7 +1,9 @@
 package com.livraria.eaglebookstore.resource;
 
+import java.util.List;
+
 import javax.inject.Inject;
-import javax.transaction.Transactional;
+import javax.validation.ConstraintViolationException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -11,7 +13,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
+import com.livraria.eaglebookstore.application.Result;
+import com.livraria.eaglebookstore.dto.ItemPedidoDTO;
+import com.livraria.eaglebookstore.dto.ItemPedidoResponseDTO;
 import com.livraria.eaglebookstore.model.ItemPedido;
 import com.livraria.eaglebookstore.service.ItemPedidoService;
 
@@ -24,28 +31,43 @@ public class ItemPedidoResource {
     ItemPedidoService itemPedidoService;
 
     @GET
+    public List<ItemPedidoResponseDTO> listarItensPedido() {
+        return itemPedidoService.listarItensPedido();
+    }
+
+    @GET
     @Path("/{id}")
     public ItemPedido buscarItemPedidoPorId(@PathParam("id") Long id) {
         return itemPedidoService.buscarItemPedidoPorId(id);
     }
 
     @POST
-    @Transactional
-    public ItemPedido cadastrarItemPedido(ItemPedido itemPedido) {
-        return itemPedidoService.cadastrarItemPedido(itemPedido);
+    public Response cadastrarItemPedido(ItemPedidoDTO dto) {
+        try {
+            ItemPedidoResponseDTO itemPedido = itemPedidoService.cadastrarItemPedido(dto);
+            return Response.status(Status.CREATED).entity(itemPedido).build();
+        } catch(ConstraintViolationException e) {
+            Result result = new Result(e.getConstraintViolations());
+            return Response.status(Status.NOT_FOUND).entity(result).build();
+        }
     }
 
     @PUT
     @Path("/{id}")
-    @Transactional
-    public ItemPedido atualizarItemPedido(@PathParam("id") Long id, ItemPedido itemPedidoAtualizado) {
-        return itemPedidoService.atualizarItemPedido(id, itemPedidoAtualizado);
+    public Response atualizarItemPedido(@PathParam("id") Long id, ItemPedidoDTO dto) {
+        try {
+            itemPedidoService.atualizarItemPedido(id, dto);
+            return Response.status(Status.NO_CONTENT).build();
+        } catch(ConstraintViolationException e) {
+            Result result = new Result(e.getConstraintViolations());
+            return Response.status(Status.NOT_FOUND).entity(result).build();
+        }      
     }
 
     @DELETE
     @Path("/{id}")
-    @Transactional
-    public void excluirItemPedido(@PathParam("id") Long id) {
+    public Response excluirItemPedido(@PathParam("id") Long id) {
         itemPedidoService.excluirItemPedido(id);
+        return Response.status(Status.NO_CONTENT).build();
     }
 }

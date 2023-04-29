@@ -1,12 +1,17 @@
 package com.livraria.eaglebookstore.resource;
 
 import javax.inject.Inject;
-import javax.validation.Valid;
+import javax.validation.ConstraintViolationException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
+
 import java.util.List;
 
+import com.livraria.eaglebookstore.application.Result;
+import com.livraria.eaglebookstore.dto.LivroDTO;
+import com.livraria.eaglebookstore.dto.LivroResponseDTO;
 import com.livraria.eaglebookstore.model.Livro;
 import com.livraria.eaglebookstore.service.LivroService;
 
@@ -30,21 +35,34 @@ public class LivroResource {
     }
 
     @POST
-    public Response cadastrarLivro(@Valid Livro livro) {
-        livroService.cadastrarLivro(livro);
-        return Response.status(Response.Status.CREATED).entity(livro).build();
+    public Response cadastrarLivro(LivroDTO dto) {
+        try {
+            LivroResponseDTO livro = livroService.cadastrarLivro(dto);
+            return Response.status(Status.CREATED).entity(livro).build();
+        } catch(ConstraintViolationException e) {
+            Result result = new Result(e.getConstraintViolations());
+            return Response.status(Status.NOT_FOUND).entity(result).build();
+        }
     }
 
     @PUT
     @Path("/{id}")
-    public Livro atualizarLivro(@PathParam("id") Long id, @Valid Livro livro) {
-        return livroService.atualizarLivro(id, livro);
+    public Response atualizarLivro(@PathParam("id") Long id, LivroDTO dto) {
+        try {
+            livroService.atualizarLivro(id, dto);;
+            return Response.status(Status.NO_CONTENT).build();
+        } catch(ConstraintViolationException e) {
+            Result result = new Result(e.getConstraintViolations());
+            return Response.status(Status.NOT_FOUND).entity(result).build();
+        }
     }
+
 
     @DELETE
     @Path("/{id}")
     public Response excluirLivro(@PathParam("id") Long id) {
         livroService.excluirLivro(id);
-        return Response.noContent().build();
+        return Response.status(Status.NO_CONTENT).build();
     }
+    
 }

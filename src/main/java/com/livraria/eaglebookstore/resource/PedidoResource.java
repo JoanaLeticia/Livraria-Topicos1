@@ -1,7 +1,8 @@
 package com.livraria.eaglebookstore.resource;
 
-import javax.transaction.Transactional;
-import javax.validation.Valid;
+import java.util.List;
+
+import javax.validation.ConstraintViolationException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -11,7 +12,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
+import com.livraria.eaglebookstore.application.Result;
+import com.livraria.eaglebookstore.dto.PedidoDTO;
+import com.livraria.eaglebookstore.dto.PedidoResponseDTO;
 import com.livraria.eaglebookstore.model.Pedido;
 import com.livraria.eaglebookstore.service.PedidoService;
 import com.oracle.svm.core.annotate.Inject;
@@ -25,29 +31,44 @@ public class PedidoResource {
     PedidoService pedidoService;
 
     @GET
+    public List<PedidoResponseDTO> listarPedidos() {
+        return pedidoService.listarPedidos();
+    }
+
+    @GET
     @Path("/{id}")
     public Pedido buscarPedidoPorId(@PathParam("id") Long id) {
         return pedidoService.buscarPedidoPorId(id);
     }
 
     @POST
-    @Transactional
-    public Pedido cadastrarPedido(@Valid Pedido pedido) {
-        return pedidoService.cadastrarPedido(pedido);
+    public Response cadastrarPedido(PedidoDTO dto) {
+        try {
+            PedidoResponseDTO pedido = pedidoService.cadastrarPedido(dto);
+            return Response.status(Status.CREATED).entity(pedido).build();
+        } catch(ConstraintViolationException e) {
+            Result result = new Result(e.getConstraintViolations());
+            return Response.status(Status.NOT_FOUND).entity(result).build();
+        }
     }
 
     @PUT
     @Path("/{id}")
-    @Transactional
-    public Pedido atualizarPedido(@PathParam("id") Long id, @Valid Pedido pedido) {
-        return pedidoService.atualizarPedido(id, pedido);
+    public Response atualizarPedido(@PathParam("id") Long id, PedidoDTO dto) {
+        try {
+            pedidoService.atualizarPedido(id, dto);
+            return Response.status(Status.NO_CONTENT).build();
+        } catch(ConstraintViolationException e) {
+            Result result = new Result(e.getConstraintViolations());
+            return Response.status(Status.NOT_FOUND).entity(result).build();
+        }      
     }
 
     @DELETE
     @Path("/{id}")
-    @Transactional
-    public void excluirPedido(@PathParam("id") Long id) {
+    public Response excluirPedido(@PathParam("id") Long id) {
         pedidoService.excluirPedido(id);
+        return Response.status(Status.NO_CONTENT).build();
     }
 }
 

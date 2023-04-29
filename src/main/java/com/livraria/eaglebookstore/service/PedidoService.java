@@ -1,60 +1,26 @@
 package com.livraria.eaglebookstore.service;
 
-import java.util.Date;
+import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.transaction.Transactional;
 
-import com.livraria.eaglebookstore.model.ItemPedido;
+import com.livraria.eaglebookstore.dto.PedidoDTO;
+import com.livraria.eaglebookstore.dto.PedidoResponseDTO;
 import com.livraria.eaglebookstore.model.Pedido;
-import com.livraria.eaglebookstore.model.StatusPedido;
-import com.livraria.eaglebookstore.repository.PedidoRepository;
 
 @ApplicationScoped
-public class PedidoService {
+public interface PedidoService {
 
-    @Inject
-    PedidoRepository pedidoRepository;
+    PedidoResponseDTO cadastrarPedido(PedidoDTO dto);
 
-    @Transactional
-    public Pedido cadastrarPedido(Pedido pedido) {
-        pedido.setData(new Date());
-        pedido.setStatus(StatusPedido.AGUARDANDO_PAGAMENTO);
-        calcularQuantidadeEValorTotal(pedido);
-        pedidoRepository.persist(pedido);
-        return pedido;
-    }
+    Pedido atualizarPedido(Long id, PedidoDTO dto);
 
-    @Transactional
-    public Pedido atualizarPedido(Long id, Pedido pedidoAtualizado) {
-        Pedido pedido = buscarPedidoPorId(id);
-        pedidoAtualizado.setId(pedido.getId());
-        calcularQuantidadeEValorTotal(pedidoAtualizado);
-        pedidoRepository.getEntityManager().merge(pedidoAtualizado);
-        return pedidoAtualizado;
-    }
+    Pedido buscarPedidoPorId(Long id);
 
-    public Pedido buscarPedidoPorId(Long id) {
-        return pedidoRepository.findById(id);
-    }
+    void calcularQuantidadeEValorTotal(Pedido pedido);
 
-    private void calcularQuantidadeEValorTotal(Pedido pedido) {
-        int quantidadeTotal = 0;
-        double valorTotal = 0.0;
+    void excluirPedido(Long id);
 
-        for (ItemPedido item : pedido.getItensPedido()) {
-            quantidadeTotal += item.getQuantidade();
-            valorTotal += item.getPreco() * item.getQuantidade();
-        }
-
-        pedido.setQuantidadeTotal(quantidadeTotal);
-        pedido.setValorTotal(valorTotal);
-    }
-
-    @Transactional
-        public void excluirPedido(Long id) {
-        pedidoRepository.deleteById(id);
-    }
+    List<PedidoResponseDTO> listarPedidos();
 
 }

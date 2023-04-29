@@ -1,42 +1,21 @@
 package com.livraria.eaglebookstore.service;
 
+import com.livraria.eaglebookstore.dto.ClienteDTO;
+import com.livraria.eaglebookstore.dto.ClienteResponseDTO;
 import com.livraria.eaglebookstore.model.Cliente;
-import com.livraria.eaglebookstore.repository.ClienteRepository;
-
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @ApplicationScoped
-public class ClienteService {
+public interface ClienteService {
 
-    @Inject
-    ClienteRepository clienteRepository;
+    List<Cliente> listarClientes();
 
-    public List<Cliente> listarClientes() {
-        return clienteRepository.listAll();
-    }
+    Cliente buscarClientePorId(Long id);
 
-    public Cliente buscarClientePorId(Long id) {
-        return clienteRepository.findById(id);
-    }
+    Cliente cadastrarCliente(Cliente cliente);
 
-    public Cliente cadastrarCliente(Cliente cliente) {
-        clienteRepository.persist(cliente);
-        return cliente;
-    }
+    ClienteResponseDTO atualizarCliente(Long id, ClienteDTO cliente);
 
-    @Transactional
-    public Cliente atualizarCliente(Long id, Cliente clienteAtualizado) {
-        Cliente cliente = buscarClientePorId(id);
-        clienteAtualizado.setId(cliente.getId());
-        clienteRepository.persist(clienteAtualizado);
-        return clienteAtualizado;
-    }
-
-    @Transactional
-    public void excluirCliente(Long id) {
-        clienteRepository.deleteById(id);
-    }
+    void excluirCliente(Long id);
 }
