@@ -1,6 +1,5 @@
 package com.livraria.eaglebookstore.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +20,7 @@ public class Telefone {
     @Column(length = 9)
     private String numero;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
@@ -47,14 +46,6 @@ public class Telefone {
 
     public void setNumero(String numero) {
         this.numero = numero;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 
 }

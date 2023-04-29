@@ -11,9 +11,9 @@ public interface EnderecoService {
 
     EnderecoResponseDTO buscarEnderecoPorId(Long id);
 
-    EnderecoResponseDTO cadastrarEndereco(EnderecoDTO dto);
+    EnderecoResponseDTO cadastrarEndereco(EnderecoDTO enderecoDTO);
 
-    EnderecoResponseDTO atualizarEndereco(Long id, EnderecoDTO dto);
+    EnderecoResponseDTO atualizarEndereco(Long id, EnderecoDTO enderecoDTO);
 
     void excluirEndereco(Long id);
 

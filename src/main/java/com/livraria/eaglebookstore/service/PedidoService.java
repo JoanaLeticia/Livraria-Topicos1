@@ -7,9 +7,9 @@ import com.livraria.eaglebookstore.dto.PedidoResponseDTO;
 
 public interface PedidoService {
 
-    PedidoResponseDTO cadastrarPedido(PedidoDTO dto);
+    PedidoResponseDTO cadastrarPedido(PedidoDTO pedidoDTO);
 
-    PedidoResponseDTO atualizarPedido(Long id, PedidoDTO dto);
+    PedidoResponseDTO atualizarPedido(Long id, PedidoDTO pedidoDTO);
 
     PedidoResponseDTO buscarPedidoPorId(Long id);
 

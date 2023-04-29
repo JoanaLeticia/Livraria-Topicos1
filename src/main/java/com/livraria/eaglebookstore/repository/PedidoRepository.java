@@ -7,10 +7,10 @@ import javax.enterprise.context.ApplicationScoped;
 import com.livraria.eaglebookstore.model.Cliente;
 import com.livraria.eaglebookstore.model.Pedido;
 
-import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 @ApplicationScoped
-public class PedidoRepository implements PanacheRepositoryBase<Pedido, Long> {
+public class PedidoRepository implements PanacheRepository<Pedido> {
 
     public Pedido findById(Long id) {
         return this.findById(id);

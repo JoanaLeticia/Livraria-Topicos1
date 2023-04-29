@@ -4,10 +4,10 @@ import javax.enterprise.context.ApplicationScoped;
 
 import com.livraria.eaglebookstore.model.Municipio;
 
-import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 @ApplicationScoped
-public class MunicipioRepository implements PanacheRepositoryBase<Municipio, Long> {
+public class MunicipioRepository implements PanacheRepository<Municipio> {
 
     public void persist(Municipio municipio) {
         this.persist(municipio);

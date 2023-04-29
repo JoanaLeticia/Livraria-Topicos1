@@ -10,9 +10,9 @@ public interface ClienteService {
 
     ClienteResponseDTO buscarClientePorId(Long id);
 
-    ClienteResponseDTO cadastrarCliente(ClienteDTO dto);
+    ClienteResponseDTO cadastrarCliente(ClienteDTO clienteDTO);
 
-    ClienteResponseDTO atualizarCliente(Long id, ClienteDTO cliente);
+    ClienteResponseDTO atualizarCliente(Long id, ClienteDTO clienteDTO);
 
     void excluirCliente(Long id);
 }

@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface LivroService {
 
-    LivroResponseDTO cadastrarLivro(LivroDTO dto);
+    LivroResponseDTO cadastrarLivro(LivroDTO livroDTO);
 
     LivroResponseDTO buscarLivroPorId(Long id);
 
-    LivroResponseDTO atualizarLivro(Long id, LivroDTO dto);
+    LivroResponseDTO atualizarLivro(Long id, LivroDTO livroDTO);
 
     void excluirLivro(Long id);
 

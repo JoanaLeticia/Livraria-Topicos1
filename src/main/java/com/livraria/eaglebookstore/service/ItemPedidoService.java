@@ -11,9 +11,9 @@ public interface ItemPedidoService {
 
     ItemPedidoResponseDTO buscarItemPedidoPorId(Long id);
 
-    ItemPedidoResponseDTO cadastrarItemPedido(ItemPedidoDTO dto);
+    ItemPedidoResponseDTO cadastrarItemPedido(ItemPedidoDTO itemPedidoDTO);
 
-    ItemPedidoResponseDTO atualizarItemPedido(Long id, ItemPedidoDTO dto);
+    ItemPedidoResponseDTO atualizarItemPedido(Long id, ItemPedidoDTO itemPedidoDTO);
 
     void excluirItemPedido(Long id);
 }

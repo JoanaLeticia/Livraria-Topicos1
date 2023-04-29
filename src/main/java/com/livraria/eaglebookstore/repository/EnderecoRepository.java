@@ -1,13 +1,14 @@
 package com.livraria.eaglebookstore.repository;
 
 import com.livraria.eaglebookstore.model.Endereco;
-import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
+
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.List;
 
 @ApplicationScoped
-public class EnderecoRepository implements PanacheRepositoryBase<Endereco, Long> {
+public class EnderecoRepository implements PanacheRepository<Endereco> {
 
     public List<Endereco> findByClienteId(Long clienteId) {
         return list("cliente.id", clienteId);

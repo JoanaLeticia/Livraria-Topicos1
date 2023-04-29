@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -14,8 +16,8 @@ import com.livraria.eaglebookstore.dto.ItemPedidoDTO;
 import com.livraria.eaglebookstore.dto.ItemPedidoResponseDTO;
 import com.livraria.eaglebookstore.model.ItemPedido;
 import com.livraria.eaglebookstore.repository.ItemPedidoRepository;
-import com.oracle.svm.core.annotate.Inject;
 
+@ApplicationScoped
 public class ItemPedidoServiceImpl implements ItemPedidoService {
     @Inject
     ItemPedidoRepository itemPedidoRepository;

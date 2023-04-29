@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -16,8 +18,8 @@ import com.livraria.eaglebookstore.model.ClassificacaoEtaria;
 import com.livraria.eaglebookstore.model.Genero;
 import com.livraria.eaglebookstore.model.Livro;
 import com.livraria.eaglebookstore.repository.LivroRepository;
-import com.oracle.svm.core.annotate.Inject;
 
+@ApplicationScoped
 public class LivroServiceImpl implements LivroService {
     @Inject
     LivroRepository livroRepository;

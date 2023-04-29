@@ -10,9 +10,9 @@ public interface ProdutoService {
 
     ProdutoResponseDTO buscarProdutoPorId(Long id);
 
-    ProdutoResponseDTO cadastrarProduto(ProdutoDTO dto);
+    ProdutoResponseDTO cadastrarProduto(ProdutoDTO produtoDTO);
 
-    ProdutoResponseDTO atualizarProduto(Long id, ProdutoDTO dto);
+    ProdutoResponseDTO atualizarProduto(Long id, ProdutoDTO produtoDTO);
 
     void excluirProduto(Long id);
 }

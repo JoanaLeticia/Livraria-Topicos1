@@ -1,5 +1,8 @@
 package com.livraria.eaglebookstore.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum StatusPedido {
     AGUARDANDO_PAGAMENTO(1, "Aguardando Pagamento"),
     PROCESSANDO(2, "Processando"),
