@@ -48,7 +48,7 @@ public class ProdutoResourceTest {
              .body("id", notNullValue(),
               	 "nome", is("nome teste"),
              	 "descricao", is("descricao teste"),
-                 "preco", is(55.0),
+                 "preco", is(55.0F),
                  "estoque", is(20));
     }
 

@@ -10,6 +10,7 @@ import com.livraria.eaglebookstore.service.ClienteService;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -47,10 +48,10 @@ public class ClienteResourceTest {
              .statusCode(201)
              .body("id", notNullValue(),
               	 "email", is("teste@teste.com"),
-             	 "telefones", is(null),
-                 "enderecos", is(null),
-                 "pedidos", is(null),
-                 "listaDesejos", is(null));
+             	 "telefones", nullValue(),
+                 "enderecos", nullValue(),
+                 "pedidos", nullValue(),
+                 "listaDesejos", nullValue());
     }
 
     @Test

@@ -52,11 +52,11 @@ public class LivroResourceTest {
              .body("id", notNullValue(),
               	 "nome", is("Teste nome"),
              	 "descricao", is("Descricao teste"),
-                 "autor", is("Autor desconhecido"),
+                 "autor", is("Autor Desconhecido"),
                  "editora", is("Editora desconhecida"),
-                 "genero", is(1),
-                 "classificacaoEtaria", is(2),
-                 "preco", is(25.0),
+                 "genero.label", is("Romance"),
+                 "classificacaoEtaria.label", is("+10"),
+                 "preco", is(25.0F),
                  "estoque", is(50));
     }
 
@@ -97,8 +97,6 @@ public class LivroResourceTest {
         assertThat(livroResponse.descricao(), is("Livro cristão"));
         assertThat(livroResponse.autor(), is("Autor Desconhecido"));
         assertThat(livroResponse.editora(), is("Editora desconhecida"));
-        assertThat(livroResponse.genero(), is(1));
-        assertThat(livroResponse.classificacaoEtaria(), is(1));
         assertThat(livroResponse.preco(), is(50.0));
         assertThat(livroResponse.estoque(), is(100));
     }

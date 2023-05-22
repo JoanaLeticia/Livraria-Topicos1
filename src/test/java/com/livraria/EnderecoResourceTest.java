@@ -12,6 +12,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import javax.inject.Inject;
@@ -55,8 +56,8 @@ public class EnderecoResourceTest {
                  "complemento", is("Casa"),
                  "bairro", is("Centro"),
                  "cep", is("12345678"),
-                 "municipioId", is(null),
-                 "clienteId", is(null));
+                 "municipioId", nullValue(),
+                 "clienteId", nullValue());
     }
 
     @Test

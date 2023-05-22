@@ -29,6 +29,10 @@ public class PedidoResource {
     @Inject
     PedidoService pedidoService;
 
+    public PedidoResource(PedidoService pedidoService) {
+        this.pedidoService = pedidoService;
+    }
+
     @GET
     public List<PedidoResponseDTO> listarPedidos() {
         return pedidoService.listarPedidos();

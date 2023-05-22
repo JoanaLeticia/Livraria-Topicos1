@@ -12,6 +12,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import javax.inject.Inject;
@@ -45,9 +46,9 @@ public class ItemPedidoResourceTest {
                 .then()
                 .statusCode(201)
                 .body("id", notNullValue(),
-                        "preco", is(30.0),
-                        "produtoId", is(null),
-                        "pedidoId", is(null));
+                        "preco", is(30.0F),
+                        "produtoId", is(nullValue()),
+                        "pedidoId", is(nullValue()));
     }
 
     @Test
