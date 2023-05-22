@@ -1,6 +1,6 @@
 package com.livraria.eaglebookstore.model;
 
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 
 @Entity
 public class PessoaFisica extends Cliente {

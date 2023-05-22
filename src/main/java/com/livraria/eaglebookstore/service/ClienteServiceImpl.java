@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.transaction.Transactional;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
-import javax.validation.Validator;
-import javax.ws.rs.NotFoundException;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Validator;
+import jakarta.ws.rs.NotFoundException;
 
 import com.livraria.eaglebookstore.dto.ClienteDTO;
 import com.livraria.eaglebookstore.dto.ClienteResponseDTO;
@@ -47,8 +47,6 @@ public class ClienteServiceImpl implements ClienteService {
 
         Cliente entity = new Cliente();
         entity.setEmail(clienteDTO.email());
-        entity.setEnderecos(clienteDTO.enderecos());
-        entity.setTelefones(clienteDTO.telefones());
         entity.setPedidos(clienteDTO.pedidos());
         entity.setListaDesejos(clienteDTO.listaDesejos());
         clienteRepository.persist(entity);
@@ -65,8 +63,6 @@ public class ClienteServiceImpl implements ClienteService {
         Cliente entity = clienteRepository.findById(id);
 
         entity.setEmail(clienteDTO.email());
-        entity.setEnderecos(clienteDTO.enderecos());
-        entity.setTelefones(clienteDTO.telefones());
         entity.setPedidos(clienteDTO.pedidos());
         entity.setListaDesejos(clienteDTO.listaDesejos());
         

@@ -1,7 +1,7 @@
 package com.livraria.eaglebookstore.converterjpa;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 import com.livraria.eaglebookstore.model.Genero;
 

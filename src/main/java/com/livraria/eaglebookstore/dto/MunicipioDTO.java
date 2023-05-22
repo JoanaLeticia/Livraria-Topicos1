@@ -1,6 +1,6 @@
 package com.livraria.eaglebookstore.dto;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 import io.smallrye.common.constraint.NotNull;
 

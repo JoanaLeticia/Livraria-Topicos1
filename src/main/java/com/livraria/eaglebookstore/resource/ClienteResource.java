@@ -5,13 +5,13 @@ import com.livraria.eaglebookstore.dto.ClienteDTO;
 import com.livraria.eaglebookstore.dto.ClienteResponseDTO;
 import com.livraria.eaglebookstore.service.ClienteService;
 
-import javax.inject.Inject;
-import javax.transaction.Transactional;
-import javax.validation.ConstraintViolationException;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
 
 import java.util.List;
 

@@ -2,7 +2,7 @@ package com.livraria.eaglebookstore.dto;
 
 import java.util.List;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 import com.livraria.eaglebookstore.model.Endereco;
 import com.livraria.eaglebookstore.model.Pedido;

@@ -3,7 +3,7 @@ package com.livraria.eaglebookstore.repository;
 import com.livraria.eaglebookstore.model.PessoaFisica;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class PessoaFisicaRepository implements PanacheRepository<PessoaFisica> {
@@ -17,8 +17,6 @@ public class PessoaFisicaRepository implements PanacheRepository<PessoaFisica> {
         pessoaFisica.getNome(),
         pessoaFisica.getCpf(),
         pessoaFisica.getEmail(),
-        pessoaFisica.getTelefones(),
-        pessoaFisica.getEnderecos(),
         pessoaFisica.getId());
     }
 

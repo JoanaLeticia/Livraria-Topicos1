@@ -1,6 +1,6 @@
 package com.livraria.eaglebookstore.repository;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import com.livraria.eaglebookstore.model.ItemPedido;
 

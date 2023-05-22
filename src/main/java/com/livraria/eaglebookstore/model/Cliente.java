@@ -2,16 +2,15 @@ package com.livraria.eaglebookstore.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Cliente {
@@ -21,12 +20,6 @@ public class Cliente {
 
     @Column(length = 50)
     private String email;
-
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-    private List<Telefone> telefones;
-
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-    private List<Endereco> enderecos;
 
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos;
@@ -51,21 +44,6 @@ public class Cliente {
         this.email = email;
     }
 
-    public List<Telefone> getTelefones() {
-        return telefones;
-    }
-
-    public void setTelefones(List<Telefone> telefones) {
-        this.telefones = telefones;
-    }
-
-    public List<Endereco> getEnderecos() {
-        return enderecos;
-    }
-
-    public void setEnderecos(List<Endereco> enderecos) {
-        this.enderecos = enderecos;
-    }
 
     public List<Pedido> getPedidos() {
         return pedidos;
