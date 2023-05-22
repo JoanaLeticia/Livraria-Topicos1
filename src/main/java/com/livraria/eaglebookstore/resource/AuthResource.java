@@ -1,9 +1,11 @@
 package com.livraria.eaglebookstore.resource;
 
+import org.eclipse.microprofile.jwt.JsonWebToken;
+
 import com.livraria.eaglebookstore.dto.AuthUsuarioDTO;
 import com.livraria.eaglebookstore.dto.UsuarioResponseDTO;
 import com.livraria.eaglebookstore.model.Usuario;
-import com.livraria.eaglebookstore.service.ClienteService;
+import com.livraria.eaglebookstore.service.UsuarioService;
 import com.livraria.eaglebookstore.service.HashService;
 import com.livraria.eaglebookstore.service.TokenJwtService;
 
@@ -18,13 +20,16 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
 
+@Path("/auth")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class AuthResource {
 
     @Inject
     HashService hashService;
 
     @Inject
-    ClienteService clienteService;
+    UsuarioService usuarioService;
 
     @Inject
     TokenJwtService tokenService;
@@ -37,27 +42,25 @@ public class AuthResource {
     public Response login(AuthUsuarioDTO authDTO) {
         String hash = hashService.getHashSenha(authDTO.senha());
 
-        Usuario usuario = usuarioService.findByLoginAndSenha(authDTO.login(), hash);
+        Usuario user = usuarioService.findByLoginAndSenha(authDTO.login(), hash);
 
-        if (usuario == null) {
+        if (user == null) {
             return Response.status(Status.NO_CONTENT)
-                .entity("Usuario não encontrado").build();
-        } 
+                .entity("Usuario não encontrado.").build();
+        }
         return Response.ok()
-            .header("Authorization", tokenService.generateJwt(usuario))
+            .header("Authorization", tokenService.generateJwt(user))
             .build();
-        
     }
 
     @GET
     @Path("/usuario")
     @RolesAllowed({"User"})
     public Response getPerfilUsuario() {
-
         String login = jwt.getSubject();
-        UsuarioResponseDTO usuario = usuarioService.findByLogin(login);
+        UsuarioResponseDTO user = usuarioService.findByLogin(login);
 
-        return Response.ok(usuario).build();
+        return Response.ok(user).build();
     }
 
 

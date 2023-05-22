@@ -45,12 +45,17 @@ public class Usuario {
     private List<Endereco> enderecos;
 
     @OneToOne
+    @JoinColumn(name = "id_cliente", unique = true)
+    private Cliente cliente;
+
+    @OneToOne
     @JoinColumn(name = "id_pessoa_fisica", unique = true)
     private PessoaFisica pessoaFisica;
 
     @OneToOne
     @JoinColumn(name = "id_pessoa_juridica", unique = true)
     private PessoaJuridica pessoaJuridica;
+
 
     public String getLogin() {
         return login;
@@ -106,6 +111,18 @@ public class Usuario {
 
     public void setPessoaJuridica(PessoaJuridica pessoaJuridica) {
         this.pessoaJuridica = pessoaJuridica;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Long getId() {
+        return id;
     }
 
 }

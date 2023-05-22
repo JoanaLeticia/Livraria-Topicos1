@@ -1,13 +1,10 @@
 package com.livraria.eaglebookstore.dto;
 
-public class AuthUsuarioDTO {
+public record AuthUsuarioDTO(
 
-    public String senha() {
-        return null;
-    }
+    String login,
+    String senha
 
-    public Object login() {
-        return null;
-    }
+) {
 
 }
