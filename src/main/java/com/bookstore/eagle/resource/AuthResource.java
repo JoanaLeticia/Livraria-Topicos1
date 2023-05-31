@@ -3,16 +3,13 @@ package com.bookstore.eagle.resource;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
 import com.bookstore.eagle.dto.UserAuthenticationDTO;
-import com.bookstore.eagle.dto.UserResponseDTO;
 import com.bookstore.eagle.model.User;
 import com.bookstore.eagle.service.HashService;
 import com.bookstore.eagle.service.TokenJwtService;
 import com.bookstore.eagle.service.UserService;
 
-import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -52,16 +49,5 @@ public class AuthResource {
             .header("Authorization", tokenService.generateJwt(user))
             .build();
     }
-
-    @GET
-    @Path("/user")
-    @RolesAllowed({"User"})
-    public Response getUserProfile() {
-        String login = jwt.getSubject();
-        UserResponseDTO user = userService.findByLogin(login);
-
-        return Response.ok(user).build();
-    }
-
 
 }

@@ -56,7 +56,6 @@ public class User {
     @JoinColumn(name = "id_juridical_person", unique = true)
     private JuridicalPerson juridicalPerson;
 
-
     public String getLogin() {
         return login;
     }

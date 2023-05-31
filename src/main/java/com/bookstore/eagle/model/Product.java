@@ -23,6 +23,9 @@ public class Product {
     @Column(length = 500)
     private String description;
 
+    @Column(name = "image_name")
+    private String imageName;
+
     private Double price;
 
     private Integer stock;
@@ -55,6 +58,14 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 
     public Double getPrice() {

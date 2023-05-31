@@ -70,6 +70,15 @@ public class ProductServiceImpl implements ProductService {
         return new ProductResponseDTO(entity);
     }
 
+    @Override
+    @Transactional
+    public ProductResponseDTO updateProductImage(Long id, String imageName) {
+        Product entity = productRepository.findById(id);
+        entity.setImageName(imageName);
+
+        return ProductResponseDTO.valueOf(entity);
+    }
+
     private void validating(ProductDTO productDTO) throws ConstraintViolationException {
         Set<ConstraintViolation<ProductDTO>> violations = validator.validate(productDTO);
         if (!violations.isEmpty())

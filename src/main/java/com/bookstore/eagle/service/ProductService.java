@@ -15,5 +15,7 @@ public interface ProductService {
 
     ProductResponseDTO updateProduct(Long id, ProductDTO productDTO);
 
+    ProductResponseDTO updateProductImage(Long id, String imageName);
+
     void deleteProduct(Long id);
 }
