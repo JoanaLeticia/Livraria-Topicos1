@@ -13,6 +13,8 @@ public record ProductDTO (
     @Size(max = 500)
     String description,
 
+    String imageName,
+
     Double price,
 
     Integer stock

@@ -35,6 +35,7 @@ public class ProductResourceTest {
         ProductDTO product = new ProductDTO(
             "nome teste",
             "descricao teste",
+            "teste",
             55.0,
             20
         );
@@ -57,6 +58,7 @@ public class ProductResourceTest {
         ProductDTO product = new ProductDTO(
             "nome teste",
             "descricao teste",
+            "teste",
             55.0,
             20
         );
@@ -64,6 +66,7 @@ public class ProductResourceTest {
 
         ProductDTO productUpdate = new ProductDTO(
             "Livro 01",
+            "teste",
             "Um livro sem descrição",
             25.0,
             20
@@ -87,6 +90,7 @@ public class ProductResourceTest {
     public void testDeleteProduct() {
         ProductDTO product = new ProductDTO(
             "nome teste",
+            "teste",
             "descricao teste",
             55.0,
             20

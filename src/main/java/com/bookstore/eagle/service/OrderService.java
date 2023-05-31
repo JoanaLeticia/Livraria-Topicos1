@@ -17,4 +17,6 @@ public interface OrderService {
 
     void deleteOrder(Long id);
 
+    void purchaseOrder(Long id);
+
 }

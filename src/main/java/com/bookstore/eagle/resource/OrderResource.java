@@ -5,7 +5,10 @@ import java.util.List;
 import com.bookstore.eagle.application.Result;
 import com.bookstore.eagle.dto.OrderDTO;
 import com.bookstore.eagle.dto.OrderResponseDTO;
+import com.bookstore.eagle.exception.InsufficientStockException;
+import com.bookstore.eagle.exception.NotFoundException;
 import com.bookstore.eagle.service.OrderService;
+import com.bookstore.eagle.service.ProductService;
 
 import jakarta.validation.ConstraintViolationException;
 import jakarta.ws.rs.Consumes;
@@ -29,8 +32,12 @@ public class OrderResource {
     @Inject
     OrderService orderService;
 
-    public OrderResource(OrderService orderService) {
+    @Inject
+    ProductService productService;
+
+    public OrderResource(OrderService orderService, ProductService productService) {
         this.orderService = orderService;
+        this.productService = productService;
     }
 
     @GET
@@ -73,5 +80,21 @@ public class OrderResource {
         orderService.deleteOrder(id);
         return Response.status(Status.NO_CONTENT).build();
     }
+
+    @POST
+    @Path("/{id}/purchase")
+    public Response purchaseOrder(@PathParam("id") Long id) {
+        try {
+            orderService.purchaseOrder(id);
+            return Response.ok("Order purchased successfully").build();
+        } catch (NotFoundException e) {
+            return Response.status(Status.NOT_FOUND).entity(e.getMessage()).build();
+        } catch (InsufficientStockException e) {
+            return Response.status(Status.CONFLICT).entity(e.getMessage()).build();
+        } catch (Exception e) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Failed to process purchase").build();
+        }
+    }
+
 }
 
