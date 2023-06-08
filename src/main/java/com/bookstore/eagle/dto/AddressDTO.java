@@ -23,7 +23,7 @@ public record AddressDTO(
 
     Long cityId,
 
-    Long clientId
+    Long userId
 ) {
     
 }

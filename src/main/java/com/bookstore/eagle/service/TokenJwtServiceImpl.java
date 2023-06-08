@@ -8,7 +8,9 @@ import java.util.stream.Collectors;
 import com.bookstore.eagle.model.User;
 
 import io.smallrye.jwt.build.Jwt;
+import jakarta.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 public class TokenJwtServiceImpl implements TokenJwtService {
     
     private static final Duration EXPIRATION_TIME = Duration.ofHours(24);

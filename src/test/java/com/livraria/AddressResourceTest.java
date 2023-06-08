@@ -64,41 +64,40 @@ public class AddressResourceTest {
     public void testUpdateAddress() {
         AddressDTO address = new AddressDTO(
             true,
-            "Rua teste",
-            "123",
+            "Rua Custodia",
+            "156",
             "Casa",
             "Centro",
             "12345678",
-            null,
+            null, 
             null
         );
         Long id = addressService.addAddress(address).id();
 
-        AddressDTO updatedAddress = new AddressDTO(
-            true,
-            "Rua Custodia",
-            "231",
-            "Casa",
-            "Centro",
-            "12345678",
-            null,
-            null
+        AddressDTO addressUpdate = new AddressDTO(true,
+        "Rua Almeida",
+        "563",
+        "AP",
+        "Centro",
+        "87654321",
+        null,
+        null
         );
 
         given()
           .contentType(ContentType.JSON)
-          .body(updatedAddress)
+          .body(addressUpdate)
           .when().put("/addresses/" + id)
           .then()
              .statusCode(204);
 
         AddressResponseDTO addressResponse = addressService.searchAddressById(id);
         assertThat(addressResponse.main(), is(true));
-        assertThat(addressResponse.street(), is("Rua Custodia"));
-        assertThat(addressResponse.number(), is("231"));
-        assertThat(addressResponse.adjunct(), is("Casa"));
+        assertThat(addressResponse.street(), is("Rua Almeida"));
+        assertThat(addressResponse.number(), is("563"));
+        assertThat(addressResponse.adjunct(), is("AP"));
         assertThat(addressResponse.neighborhood(), is("Centro"));
-        assertThat(addressResponse.zip(), is("12345678"));
+        assertThat(addressResponse.zip(), is("87654321"));
     }
 
     @Test

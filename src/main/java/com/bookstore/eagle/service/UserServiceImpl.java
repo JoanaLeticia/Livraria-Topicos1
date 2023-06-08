@@ -6,18 +6,20 @@ import java.util.stream.Collectors;
 import com.bookstore.eagle.dto.UserResponseDTO;
 import com.bookstore.eagle.model.User;
 import com.bookstore.eagle.repository.UserRepository;
-import com.oracle.svm.core.annotate.Inject;
+import jakarta.inject.Inject;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Validator;
 import jakarta.ws.rs.NotFoundException;
 
+@ApplicationScoped
 public class UserServiceImpl implements UserService {
     @Inject
-    UserRepository userRepository;
-
+    private UserRepository userRepository;
+    
     @Inject
-    Validator validator;
+    private Validator validator;
 
     @Override
     public List<UserResponseDTO> getAll() {

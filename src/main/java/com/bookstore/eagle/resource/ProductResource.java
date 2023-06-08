@@ -11,10 +11,7 @@ import jakarta.ws.rs.core.Response.ResponseBuilder;
 
 import java.util.List;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-
 import com.bookstore.eagle.application.Result;
 import com.bookstore.eagle.dto.ProductDTO;
 import com.bookstore.eagle.dto.ProductResponseDTO;
@@ -38,11 +35,6 @@ public class ProductResource {
 
     @Inject
     FileService fileService;
-
-    public ProductResource(ProductService productService, FileService fileService) {
-        this.productService = productService;
-        this.fileService = fileService;
-    }
 
     @GET
     public List<ProductResponseDTO> listProducts() {
@@ -79,10 +71,10 @@ public class ProductResource {
     }
 
     @PATCH
-    @Path("/{id}/new_image")
+    @Path("/newimage")
     @RolesAllowed({"Admin","User"})
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response saveProductImage(@PathParam("id") Long id, @MultipartForm ImageForm form){
+    public Response saveImage(@MultipartForm ImageForm form){
         String imageName = "";
 
         try {
@@ -92,29 +84,23 @@ public class ProductResource {
             return Response.status(Status.CONFLICT).entity(result).build();
         }
 
-        productService.updateProductImage(id, imageName);
+        String idS = jwt.getSubject();
+        Long id = Long.parseLong(idS);
+        ProductResponseDTO product = productService.searchProductById(id);
 
-        return Response.ok().build();
+        product = productService.updateProductImage(product.id(), imageName);
+
+        return Response.ok(product).build();
+
     }
 
     @GET
-    @Path("/download/{newImage}")
-    @RolesAllowed({ "Admin", "User" })
+    @Path("/download/{imageName}")
+    @RolesAllowed({"Admin","User"})
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    public Response downloadImage(@PathParam("newImage") String newImage) {
-        File imageFile = fileService.download(newImage);
-
-        if (imageFile.exists()) {
-            try {
-                byte[] imageData = Files.readAllBytes(imageFile.toPath());
-                ResponseBuilder response = Response.ok(imageData);
-                response.header("Content-Disposition", "attachment; filename=" + newImage);
-                return response.build();
-            } catch (IOException e) {
-                return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Failed to read image file").build();
-            }
-        } else {
-            return Response.status(Status.NOT_FOUND).entity("Image not found").build();
-        }
+    public Response download(@PathParam("imageName") String imageName) {
+        ResponseBuilder response = Response.ok(fileService.download(imageName));
+        response.header("Content-Disposition", "attachment;filename="+imageName);
+        return response.build();
     }
 }

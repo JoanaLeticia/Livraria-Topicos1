@@ -10,11 +10,11 @@ import com.bookstore.eagle.model.Address;
 @ApplicationScoped
 public class AddressRepository implements PanacheRepository<Address> {
 
-    public List<Address> findByClientId(Long clientId) {
-        return list("client.id", clientId);
+    public List<Address> findByUserId(Long userId) {
+        return list("user.id", userId);
     }
 
-    public Address findByIdAndClientId(Long id, Long clientId) {
-        return find("id = ?1 and client.id = ?2", id, clientId).firstResult();
+    public Address findByIdAndUserId(Long id, Long userId) {
+        return find("id = ?1 and user.id = ?2", id, userId).firstResult();
     }
 }

@@ -44,10 +44,11 @@ public class AuthResource {
         if (user == null) {
             return Response.status(Status.NO_CONTENT)
                 .entity("User not found.").build();
-        }
+        } 
         return Response.ok()
             .header("Authorization", tokenService.generateJwt(user))
             .build();
+        
     }
 
 }

@@ -36,8 +36,8 @@ public class Address {
     private City city;
 
     @ManyToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Long getId() {
         return id;

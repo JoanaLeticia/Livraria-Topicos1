@@ -2,7 +2,6 @@ package com.bookstore.eagle.dto;
 
 import java.util.List;
 
-import com.bookstore.eagle.model.Client;
 import com.bookstore.eagle.model.Genre;
 import com.bookstore.eagle.model.RequestedItem;
 import com.bookstore.eagle.model.Product;
@@ -24,8 +23,7 @@ public record BookResponseDTO (
 
     Double price,
     Integer stock,
-    List<RequestedItem> requestedItems,
-    List<Client> clients
+    List<RequestedItem> requestedItems
 ) {
     public BookResponseDTO(Product product) {
         this(product.getId(),
@@ -37,7 +35,6 @@ public record BookResponseDTO (
         product.getAgeRating(),
         product.getPrice(),
         product.getStock(),
-        product.getRequestedItems(),
-        product.getClients());
+        product.getRequestedItems());
     }
 }

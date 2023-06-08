@@ -3,7 +3,6 @@ package com.bookstore.eagle.model;
 import java.util.List;
 import java.util.Set;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -38,10 +37,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Set<Profile> profiles;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user")
     private List<Phone> phones;
-
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    
+    @OneToMany(mappedBy = "user")
     private List<Address> addresses;
 
     @OneToOne

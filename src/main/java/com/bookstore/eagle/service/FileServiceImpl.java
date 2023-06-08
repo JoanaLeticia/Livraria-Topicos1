@@ -8,6 +8,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+import jakarta.enterprise.context.ApplicationScoped;
+
+@ApplicationScoped
 public class FileServiceImpl implements FileService {
 
     private static final String PATH_USER = System.getProperty("user.home") + File.separator + "quarkus"

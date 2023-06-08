@@ -27,11 +27,7 @@ import jakarta.inject.Inject;
 public class AddressResource {
 
     @Inject
-    private final AddressService addressService;
-
-    public AddressResource(AddressService addressService) {
-        this.addressService = addressService;
-    }
+    AddressService addressService;
 
     @GET
     public List<AddressResponseDTO> listAddresses() {
@@ -64,7 +60,7 @@ public class AddressResource {
         } catch(ConstraintViolationException e) {
             Result result = new Result(e.getConstraintViolations());
             return Response.status(Status.NOT_FOUND).entity(result).build();
-        }
+        }      
     }
 
     @DELETE

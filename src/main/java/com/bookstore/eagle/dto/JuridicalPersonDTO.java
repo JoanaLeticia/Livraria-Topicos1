@@ -21,9 +21,7 @@ public record JuridicalPersonDTO (
 
     List<AddressDTO> addresses,
 
-    List<OrderDTO> orders,
-
-    List<BookDTO> products
+    List<OrderDTO> orders
 )
 {
 }

@@ -7,7 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -32,9 +31,6 @@ public class Product {
 
     @OneToMany(mappedBy = "product")
     private List<RequestedItem> requestedItems;
-
-    @ManyToMany(mappedBy = "wishlists")
-    private List<Client> clients;
 
     public Long getId() {
         return id;
@@ -90,14 +86,6 @@ public class Product {
 
     public void setRequestedItems(List<RequestedItem> requestedItems) {
         this.requestedItems = requestedItems;
-    }
-
-    public List<Client> getClients() {
-        return clients;
-    }
-
-    public void setClients(List<Client> clients) {
-        this.clients = clients;
     }
 
     public String getAuthor() {

@@ -5,7 +5,9 @@ import java.util.List;
 import com.bookstore.eagle.model.User;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
+import jakarta.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 public class UserRepository implements PanacheRepository<User> {
     
     public List<User> findByName(String name) {

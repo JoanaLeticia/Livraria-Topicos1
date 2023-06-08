@@ -48,7 +48,6 @@ public class ClientServiceImpl implements ClientService {
         Client entity = new Client();
         entity.setEmail(clientDTO.email());
         entity.setOrders(clientDTO.orders());
-        entity.setWishLists(clientDTO.products());
         clientRepository.persist(entity);
 
         return new ClientResponseDTO(entity);
@@ -64,7 +63,6 @@ public class ClientServiceImpl implements ClientService {
 
         entity.setEmail(clientDTO.email());
         entity.setOrders(clientDTO.orders());
-        entity.setWishLists(clientDTO.products());
         
         return new ClientResponseDTO(entity);
     }

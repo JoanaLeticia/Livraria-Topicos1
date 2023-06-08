@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.bookstore.eagle.dto.UserResponseDTO;
 import com.bookstore.eagle.service.UserService;
-import com.oracle.svm.core.annotate.Inject;
+import jakarta.inject.Inject;
 
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -22,7 +22,7 @@ import jakarta.ws.rs.core.Response.Status;
 public class UserResource {
     
     @Inject
-    UserService userService;
+    private UserService userService;
 
     @GET
     public List<UserResponseDTO> getAll() {

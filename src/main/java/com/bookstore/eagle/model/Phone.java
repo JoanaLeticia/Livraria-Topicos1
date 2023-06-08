@@ -21,8 +21,8 @@ public class Phone {
     private String number;
 
     @ManyToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Long getId() {
         return id;
