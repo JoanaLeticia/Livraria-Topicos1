@@ -12,6 +12,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import jakarta.inject.Inject;
@@ -31,16 +32,16 @@ public class BookResourceTest {
     }
 
     @Test
-    public void testAddBook() {
+    public void testAddBooks() {
         BookDTO book = new BookDTO(
-            "Teste nome",
-            "Descricao teste",
-            "Autor Desconhecido",
-            "Editora desconhecida",
-            1,
+            "asdas",
+            "adfaa",
+            "bvcxbv",
+            "dafda",
             2,
+            4,
             25.0,
-            50
+            60
         );
 
         given()
@@ -50,14 +51,14 @@ public class BookResourceTest {
           .then()
              .statusCode(201)
              .body("id", notNullValue(),
-              	 "name", is("Teste nome"),
-             	 "description", is("Descricao teste"),
-                 "author", is("Autor Desconhecido"),
-                 "publisher", is("Editora desconhecida"),
-                 "genre.label", is("Romance"),
-                 "rating.label", is("+10"),
+              	 "name", is("asdas"),
+             	 "description", is("adfaa"),
+                 "author", is("bvcxbv"),
+                 "publisher", is("dafda"),
+                 "genre.label", is("Comedy"),
+                 "rating.label", nullValue(),
                  "price", is(25.0F),
-                 "stock", is(50));
+                 "stock", is(60));
     }
 
     @Test

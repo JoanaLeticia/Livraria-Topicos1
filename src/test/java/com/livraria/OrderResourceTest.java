@@ -48,9 +48,9 @@ public class OrderResourceTest {
           .body(order)
           .when().post("/orders")
           .then()
-             .statusCode(201)
+             .statusCode(201)   
              .body("id", notNullValue(),
-                        "totalQuantity", is(2),
+                    "totalQuantity", is(2),
                         "totalValue", is(30.0F),
                         "date", nullValue(),
                         "status.label", is("Processando"),

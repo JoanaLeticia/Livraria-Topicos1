@@ -7,19 +7,12 @@ import com.bookstore.eagle.dto.AddressDTO;
 import com.bookstore.eagle.dto.AddressResponseDTO;
 import com.bookstore.eagle.service.AddressService;
 
+import jakarta.inject.Inject;
 import jakarta.validation.ConstraintViolationException;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.DELETE;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.PUT;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
-import jakarta.inject.Inject;
 
 @Path("/addresses")
 @Produces(MediaType.APPLICATION_JSON)

@@ -9,14 +9,11 @@ public interface OrderService {
 
     List<OrderResponseDTO> listOrders();
 
+    OrderResponseDTO searchOrderById(Long id);
+
     OrderResponseDTO addOrder(OrderDTO orderDTO);
 
     OrderResponseDTO updateOrder(Long id, OrderDTO orderDTO);
 
-    OrderResponseDTO searchOrderById(Long id);
-
     void deleteOrder(Long id);
-
-    void purchaseOrder(Long id);
-
 }

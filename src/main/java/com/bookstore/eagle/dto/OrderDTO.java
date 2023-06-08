@@ -15,12 +15,10 @@ public record OrderDTO (
 
     Integer status,
 
-    @NotNull
     Long clientId,
 
     List<RequestedItemDTO> RequestedItem,
 
-    @NotNull
     Long addressId
 ){
     
